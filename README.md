@@ -37,6 +37,8 @@
 - API root available at `http://localhost:8000/api/`
 - Admin available at `http://localhost:8000/admin/`
 
+![screenshot](https://github.com/faisalnazik/Django-REST-Framework-React-BoilerPlate)
+
 ## ⭐️ Support
 
 Give a ⭐️ if this project helped you!

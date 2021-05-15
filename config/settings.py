@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'accounts',
+    'frontend',
 
     'rest_framework', #https://www.django-rest-framework.org/
     'rest_framework.authtoken',
