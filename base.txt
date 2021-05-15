@@ -1,0 +1,12 @@
+asgiref==3.3.4
+dj-rest-auth==2.1.4
+Django==3.2.3
+django-cors-headers==3.7.0
+django-environ==0.4.5
+django-filter==2.4.0
+djangorestframework==3.12.4
+Markdown==3.3.4
+psycopg2==2.8.6
+pytz==2021.1
+sqlparse==0.4.1
+whitenoise==5.2.0
