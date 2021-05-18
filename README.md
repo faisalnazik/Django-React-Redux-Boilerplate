@@ -1,6 +1,8 @@
 <h1 align="center">Django REST API with React BoilerPlate</h1>
 
-# Backend is ready Frontend with React coming soon...
+## Till now Backend is ready & Frontend is integrated with django
+
+## Authentication and Registration on frontend is Pending .. Coming soon
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
@@ -13,12 +15,9 @@
 - PostgreSQL
 - Unit tests with Pytest
 
-## Motivation 🎯
-
-- Playing with tools that are free for open source
-
 ## Features ✨
 
+- React app Integration in the templates
 - Accounts Registration and Authentication
 - Config with environment variables
 - Update your profile & pick an avatar
@@ -35,6 +34,19 @@
         $ python manage.py makemigrations
         $ python manage.py migrate
 
+    - Install dependencies in frontend app using following commands in separate terminal
+    - First make sure you have installed Node.js, I used v15.10.0 while developing this setup. For More info https://nodejs.org/en/
+    - Then run following commands in dir where the package.json file is located
+
+        $ npm install
+        $ npm run dev
+
+    - After that you should kept running this terminal as this is automatically compiling the react.js code in single file main.js
+    - Then Run the following command in previous terminal to load frontend react app on django server
+
+        $ python manage.py runserver
+
+- React app available at `http://localhost:8000/`
 - API root available at `http://localhost:8000/api/`
 - Admin available at `http://localhost:8000/admin/`
 

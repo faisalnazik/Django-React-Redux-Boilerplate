@@ -8,4 +8,4 @@ from django.views import View
 class IndexView(View):
     
     def get(self, request):
-        return render(request, 'frontend/index.html')
+        return render(request, 'index.html') #this file is placed in templates of project dir 
