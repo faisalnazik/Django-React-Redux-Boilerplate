@@ -1,6 +1,6 @@
 <h1 align="center">Django REST API with React BoilerPlate</h1>
 
-# Integration, Auth and Registraion Implemented
+- Integration of Django and React, Auth and Registraion
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
