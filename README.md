@@ -8,18 +8,18 @@
 
 ### Backend
 
-- Django REST framework for a powerful API
-- Django ORM for interacting with the database
-- PostgreSQL
-- Unit tests with Pytest
+- Django REST framework for a powerful API✔
+- Django ORM for interacting with the database✔
+- PostgreSQL✔
+- Unit tests with Pytest (coming soon..)
 
 ## Features ✨
 
-- Django Config with environment variables
-- Accounts with Update your profile & pick an avatar
-- React app Integration in the templates
-- Fetching Api Data via Axios
-- Accounts Registration and Authentication Using Reducers and Redux
+- Django Config with environment variables✔
+- Accounts with Update your profile & pick an avatar (coming soon..)
+- React app Integration in the templates✔
+- Fetching Api Data via Axios✔
+- Accounts Registration and Authentication Using Reducers and Redux✔
 
 ## How to Run locally 🚀
 
