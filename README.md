@@ -40,7 +40,7 @@
         $ npm install
         $ npm run dev
 
-    - After that you should kept running this terminal as this is automatically compiling the react.js code in single file main.js
+    - After that you should keep running this terminal as this is automatically compiling the react.js code in single file main.js
     - Then Run the following command in previous terminal to load frontend react app on django server
 
         $ python manage.py runserver
