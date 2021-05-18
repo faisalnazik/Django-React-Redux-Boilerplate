@@ -56,11 +56,11 @@
 - State Chart From Redux Dev Tool
   ![screenshot](https://github.com/faisalnazik/Django-REST-Framework-React-BoilerPlate/blob/master/StateChartReduxDev-tool.png)
 - Homepage/Login
-  ![screenshot](https://github.com/faisalnazik/Django-REST-Framework-React-BoilerPlate/blob/master/Login.png)
+  ![screenshot](https://github.com/faisalnazik/Django-REST-Framework-React-BoilerPlate/blob/master/HomePage.png)
 - Registeration Page
   ![screenshot](https://github.com/faisalnazik/Django-REST-Framework-React-BoilerPlate/blob/master/Register.png)
 - Logged In
-  ![screenshot](https://github.com/faisalnazik/Django-REST-Framework-React-BoilerPlate/blob/master/LoggedIn.png)
+  ![screenshot](https://github.com/faisalnazik/Django-REST-Framework-React-BoilerPlate/blob/master/Logged-In.png)
 - API root
   ![screenshot](https://github.com/faisalnazik/Django-REST-Framework-React-BoilerPlate/blob/master/API-Root.png)
 
