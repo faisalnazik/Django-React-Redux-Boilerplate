@@ -1,8 +1,6 @@
 <h1 align="center">Django REST API with React BoilerPlate</h1>
 
-## Till now Backend is ready & Frontend is integrated with django
-
-## Authentication and Registration on frontend is Pending .. Coming soon
+# Integration, Auth and Registraion Implemented
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
@@ -17,10 +15,11 @@
 
 ## Features ✨
 
+- Django Config with environment variables
+- Accounts with Update your profile & pick an avatar
 - React app Integration in the templates
-- Accounts Registration and Authentication
-- Config with environment variables
-- Update your profile & pick an avatar
+- Fetching Api Data via Axios
+- Accounts Registration and Authentication Using Reducers and Redux
 
 ## How to Run locally 🚀
 
@@ -50,7 +49,13 @@
 - API root available at `http://localhost:8000/api/`
 - Admin available at `http://localhost:8000/admin/`
 
+## Screenshots 📸
+
 ![screenshot](https://github.com/faisalnazik/Django-REST-Framework-React-BoilerPlate/blob/master/REST-API-DOCS.png)
+![screenshot](https://github.com/faisalnazik/Django-REST-Framework-React-BoilerPlate/blob/master/Login.png)
+![screenshot](https://github.com/faisalnazik/Django-REST-Framework-React-BoilerPlate/blob/master/Register.png)
+![screenshot](https://github.com/faisalnazik/Django-REST-Framework-React-BoilerPlate/blob/master/LoggedIn.png)
+![screenshot](https://github.com/faisalnazik/Django-REST-Framework-React-BoilerPlate/blob/master/API-Root.png)
 
 ## ⭐️ Support
 
