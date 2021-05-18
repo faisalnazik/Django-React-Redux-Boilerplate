@@ -51,11 +51,16 @@
 
 ## Screenshots 📸
 
-![screenshot](https://github.com/faisalnazik/Django-REST-Framework-React-BoilerPlate/blob/master/REST-API-DOCS.png)
-![screenshot](https://github.com/faisalnazik/Django-REST-Framework-React-BoilerPlate/blob/master/Login.png)
-![screenshot](https://github.com/faisalnazik/Django-REST-Framework-React-BoilerPlate/blob/master/Register.png)
-![screenshot](https://github.com/faisalnazik/Django-REST-Framework-React-BoilerPlate/blob/master/LoggedIn.png)
-![screenshot](https://github.com/faisalnazik/Django-REST-Framework-React-BoilerPlate/blob/master/API-Root.png)
+- API Documentation
+  ![screenshot](https://github.com/faisalnazik/Django-REST-Framework-React-BoilerPlate/blob/master/REST-API-DOCS.png)
+- Homepage/Login
+  ![screenshot](https://github.com/faisalnazik/Django-REST-Framework-React-BoilerPlate/blob/master/Login.png)
+- Registeration Page
+  ![screenshot](https://github.com/faisalnazik/Django-REST-Framework-React-BoilerPlate/blob/master/Register.png)
+- Logged In
+  ![screenshot](https://github.com/faisalnazik/Django-REST-Framework-React-BoilerPlate/blob/master/LoggedIn.png)
+- API root
+  ![screenshot](https://github.com/faisalnazik/Django-REST-Framework-React-BoilerPlate/blob/master/API-Root.png)
 
 ## ⭐️ Support
 
