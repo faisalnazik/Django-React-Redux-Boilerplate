@@ -53,6 +53,8 @@
 
 - API Documentation
   ![screenshot](https://github.com/faisalnazik/Django-REST-Framework-React-BoilerPlate/blob/master/REST-API-DOCS.png)
+- State Chart From Redux Dev Tool
+  ![screenshot](https://github.com/faisalnazik/Django-REST-Framework-React-BoilerPlate/blob/master/StateChartReduxDev-tool.png)
 - Homepage/Login
   ![screenshot](https://github.com/faisalnazik/Django-REST-Framework-React-BoilerPlate/blob/master/Login.png)
 - Registeration Page
