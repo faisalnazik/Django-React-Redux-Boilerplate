@@ -2,7 +2,7 @@ asgiref==3.3.4
 coreapi==2.3.3
 dj-rest-auth==2.1.4
 django-allauth==0.44.0
-Django==3.2.3
+Django==3.2.4
 django-cors-headers==3.7.0
 django-environ==0.4.5
 django-filter==2.4.0
