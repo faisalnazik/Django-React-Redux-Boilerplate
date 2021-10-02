@@ -10,7 +10,7 @@
 
 - Django REST framework for a powerful API✔
 - Django ORM for interacting with the database✔
-- PostgreSQL✔
+- PostgreSQL ✔ (NOTE: Sqlite is configured as default , turn IS_POSTGRESQL = True in settings.py if you want to use PostgreSQ)
 - Unit tests with Pytest (coming soon..)
 
 ## Features ✨
@@ -27,7 +27,9 @@
 
         $ pip install -r requirements/local.txt
 
-    - Create .env file in config and put variables for Secret Key and Database (PostgreSQL) as created in sample.env file
+    - Create .env file in config and put variables for Secret Key and Database (PostgreSQL) are optional as by default 
+    IS_POSTGRESQL = False and won't reuired the credentials. If your turn this into True then set the variables for that 
+    as created in sample.env file
 
 
         $ python manage.py makemigrations
