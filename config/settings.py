@@ -92,14 +92,26 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 #Create a file named .env and Declare your environment variables for database in .env 
 # Make sure you don’t use quotations around strings.
-DATABASES = {
+IS_POSTGRESQL = False # Set True if want to use PostgrSQL DB
+
+if IS_POSTGRESQL is True:
+    
+    DATABASES = {
+        'default': {
+            'ENGINE': env('DATABASE_ENGINE'),
+            'NAME': env('DATABASE_NAME'),
+            'USER': env('DATABASE_USER'),
+            'PASSWORD': env('DATABASE_PASS'),
+            'HOST': env('DATABASE_HOST'),
+            'PORT': env('DATABASE_PORT'),
+        }
+    }
+else:
+    # this part will be executed if IS_POSTGRESQL = False
+    DATABASES = {
     'default': {
-        'ENGINE': env('DATABASE_ENGINE'),
-        'NAME': env('DATABASE_NAME'),
-        'USER': env('DATABASE_USER'),
-        'PASSWORD': env('DATABASE_PASS'),
-        'HOST': env('DATABASE_HOST'),
-        'PORT': env('DATABASE_PORT'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 # Password validation
