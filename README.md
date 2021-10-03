@@ -10,7 +10,7 @@
 
 - Django REST framework for a powerful API✔
 - Django ORM for interacting with the database✔
-- PostgreSQL ✔ (NOTE: Sqlite is configured as default , turn IS_POSTGRESQL = True in settings.py if you want to use PostgreSQ)
+- PostgreSQL ✔ (NOTE: Sqlite is configured as default , turn IS_POSTGRESQL = True in settings.py if you want to use PostgreSQL)
 - Unit tests with Pytest (coming soon..)
 
 ## Features ✨
