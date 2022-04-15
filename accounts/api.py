@@ -1,7 +1,6 @@
 import uuid
 
 import shortuuid
-from dj_rest_auth.registration.views import RegisterView
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from rest_framework import filters
@@ -26,6 +25,7 @@ from .serializers import (
 )
 
 User = get_user_model()
+
 
 class UserViewSet(
     mixins.RetrieveModelMixin, mixins.UpdateModelMixin, GenericViewSet,
@@ -54,30 +54,7 @@ class AvatarViewSet(ReadOnlyModelViewSet):
     queryset = Avatar.objects.all()
     permission_classes = [IsAuthenticated]
 
+
 class AuthSetup(APIView):
     def get(self, request, *args, **kwargs):
         return Response({"ALLOW_GUEST_ACCESS": settings.ALLOW_GUEST_ACCESS})
-
-class GuestRegistration(RegisterView):
-    def create(self, request, *args, **kwargs):
-        if not settings.ALLOW_GUEST_ACCESS:
-            raise PermissionDenied
-
-        password = str(uuid.uuid4())
-        guest_id = str(shortuuid.uuid())[:10]
-        request.data.update(
-            {
-                "username": f"Guest-{guest_id}",
-                "email": f"{guest_id}@guest.com",
-                "password1": password,
-                "password2": password,
-            }
-        )
-        return super().create(request, *args, **kwargs)
-
-    def perform_create(self, serializer):
-        user = super().perform_create(serializer)
-        user.is_guest = True
-        user.avatar = get_random_avatar()
-        user.save()
-        return user

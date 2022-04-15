@@ -3,21 +3,33 @@ from django.contrib import admin
 # Register your models here.
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-
-from .models import Avatar, User
+from django.utils.translation import gettext as _
+from .models import Avatar, CustomUser
 
 
 class CustomUserAdmin(UserAdmin):
-    list_display = (
-        "username",
-        "email",
-        "first_name",
-        "last_name",
-        "is_staff",
-        "is_guest",
+    """Define admin model for custom User model with no username field."""
+    fieldsets = (
+        (None, {'fields': ('first_name',
+                           'last_name',
+                           'avatar',
+                           'email',)}),
+        (_('Permissions'), {'fields': ('is_active', 'is_staff',
+         'is_superuser', 'groups', 'user_permissions')}),
+        (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
     )
-    list_filter = ("is_staff", "is_superuser", "is_active", "groups", "is_guest")
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('first_name', 'last_name', 'is_staff', 'password1', 'password2'),
+        }),
+    )
+
+    list_display = ('first_name', 'last_name', 'email',)
+    search_fields = ('id', 'first_name', 'last_name', 'email')
+    ordering = ('id',)
+    list_filter = ('is_staff',)
 
 
 admin.site.register(Avatar)
-admin.site.register(User, CustomUserAdmin)
+admin.site.register(CustomUser, CustomUserAdmin)
