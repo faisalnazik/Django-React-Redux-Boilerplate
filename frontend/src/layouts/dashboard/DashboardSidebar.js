@@ -4,8 +4,9 @@ import { Link as RouterLink, useLocation } from 'react-router-dom';
 // material
 import { styled } from '@mui/material/styles';
 import { Box, Link, Button, Drawer, Typography, Avatar, Stack } from '@mui/material';
-// mock
-import account from '../../_mock/account';
+
+import { useSelector } from 'react-redux';
+
 // hooks
 import useResponsive from '../../hooks/useResponsive';
 // components
@@ -43,6 +44,8 @@ DashboardSidebar.propTypes = {
 
 export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
   const BlankPofile = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png';
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
   const { pathname } = useLocation();
 
   const isDesktop = useResponsive('up', 'lg');
@@ -68,13 +71,16 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
       <Box sx={{ mb: 5, mx: 2.5 }}>
         <Link underline="none" component={RouterLink} to="#">
           <AccountStyle>
-            <Avatar src={account ? account.photoURL : BlankPofile} alt="photoURL" />
+            <Avatar src={userInfo ? userInfo.avatar : BlankPofile} alt="photoURL" />
             <Box sx={{ ml: 2 }}>
               <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
-                {account.displayName}
-              </Typography>
-              <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                {account.role}
+                {userInfo ? (
+                  <>
+                    {userInfo.first_name} {userInfo.last_name}
+                  </>
+                ) : (
+                  'John Doe'
+                )}
               </Typography>
             </Box>
           </AccountStyle>

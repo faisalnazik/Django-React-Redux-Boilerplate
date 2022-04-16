@@ -1,8 +1,12 @@
-import { useRef, useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { useRef, useState, useEffect } from 'react';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 // @mui
 import { alpha } from '@mui/material/styles';
 import { Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton } from '@mui/material';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../redux/actions/authActions';
+import { LOGOUT } from '../../redux/types/auth';
 // components
 import MenuPopover from '../../components/MenuPopover';
 // mocks_
@@ -31,6 +35,8 @@ const MENU_OPTIONS = [
 // ----------------------------------------------------------------------
 
 export default function AccountPopover() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const anchorRef = useRef(null);
 
   const [open, setOpen] = useState(null);
@@ -43,6 +49,19 @@ export default function AccountPopover() {
     setOpen(null);
   };
 
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  useEffect(() => {
+    if (!userInfo) {
+      navigate('/login', { replace: true });
+      dispatch({ type: LOGOUT });
+    }
+  }, [navigate, userInfo]);
+
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
   return (
     <>
       <IconButton
@@ -82,10 +101,16 @@ export default function AccountPopover() {
       >
         <Box sx={{ my: 1.5, px: 2.5 }}>
           <Typography variant="subtitle2" noWrap>
-            {account.displayName}
+            {userInfo ? (
+              <>
+                {userInfo.first_name} {userInfo.last_name}
+              </>
+            ) : (
+              'John Doe'
+            )}
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
-            {account.email}
+            {userInfo ? <>{userInfo.email}</> : 'email@email.com'}
           </Typography>
         </Box>
 
@@ -101,7 +126,7 @@ export default function AccountPopover() {
 
         <Divider sx={{ borderStyle: 'dashed' }} />
 
-        <MenuItem onClick={handleClose} sx={{ m: 1 }}>
+        <MenuItem onClick={logoutHandler} sx={{ m: 1 }}>
           Logout
         </MenuItem>
       </MenuPopover>

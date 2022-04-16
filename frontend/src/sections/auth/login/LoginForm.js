@@ -1,17 +1,24 @@
 import * as Yup from 'yup';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { useFormik, Form, FormikProvider } from 'formik';
-// material
-import { Link, Stack, TextField, IconButton, InputAdornment } from '@mui/material';
+// @mui
+
+import { Link, Stack, TextField, IconButton, InputAdornment, Alert, AlertTitle } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
-// component
+import { useSelector, useDispatch } from 'react-redux';
+
+import { login } from '../../../redux/actions/authActions';
 import Iconify from '../../../components/Iconify';
 
 // ----------------------------------------------------------------------
 
 export default function LoginForm() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { error: loginError, loading: loginLoading, userInfo } = userLogin;
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -24,11 +31,10 @@ export default function LoginForm() {
     initialValues: {
       email: '',
       password: '',
-      remember: true,
     },
     validationSchema: LoginSchema,
     onSubmit: () => {
-      navigate('/dashboard', { replace: true });
+      dispatch(login(values.email, values.password));
     },
   });
 
@@ -38,6 +44,11 @@ export default function LoginForm() {
     setShowPassword((show) => !show);
   };
 
+  useEffect(() => {
+    if (userInfo) {
+      navigate('/dashboard/app', { replace: true });
+    }
+  }, [navigate, userInfo]);
   return (
     <FormikProvider value={formik}>
       <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
@@ -77,8 +88,20 @@ export default function LoginForm() {
             Forgot password?
           </Link>
         </Stack>
+        {loginError ? (
+          <Alert severity="error">
+            <AlertTitle>Login Error</AlertTitle>
+            {loginError}
+          </Alert>
+        ) : null}
 
-        <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={isSubmitting}>
+        <LoadingButton
+          fullWidth
+          size="large"
+          type="submit"
+          variant="contained"
+          loading={loginLoading ? isSubmitting : null}
+        >
           Login
         </LoadingButton>
       </Form>

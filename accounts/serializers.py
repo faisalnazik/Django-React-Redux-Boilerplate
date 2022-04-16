@@ -12,6 +12,7 @@ class UserSerializer(serializers.Serializer):
 
 
 class UserSerializerWithToken(UserSerializer):
+    email = serializers.EmailField(read_only=True)
     access = serializers.SerializerMethodField(read_only=True)
     refresh = serializers.SerializerMethodField(read_only=True)
 

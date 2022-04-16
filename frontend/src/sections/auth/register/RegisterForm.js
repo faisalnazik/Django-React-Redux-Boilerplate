@@ -1,17 +1,26 @@
 import * as Yup from 'yup';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useFormik, Form, FormikProvider } from 'formik';
 import { useNavigate } from 'react-router-dom';
 // material
-import { Stack, TextField, IconButton, InputAdornment } from '@mui/material';
+import { Stack, TextField, IconButton, InputAdornment, Alert, AlertTitle } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
+import { useDispatch, useSelector } from 'react-redux';
+import { register } from '../../../redux/actions/authActions';
 // component
 import Iconify from '../../../components/Iconify';
 
 // ----------------------------------------------------------------------
 
 export default function RegisterForm() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const userRgister = useSelector((state) => state.userRgister);
+  const { error: registerError, loading: registerLoading } = userRgister;
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -31,12 +40,16 @@ export default function RegisterForm() {
     },
     validationSchema: RegisterSchema,
     onSubmit: () => {
-      navigate('/dashboard', { replace: true });
+      dispatch(register(values.firstName, values.lastName, values.email, values.password));
     },
   });
 
-  const { errors, touched, handleSubmit, isSubmitting, getFieldProps } = formik;
-
+  const { errors, touched, values, handleSubmit, isSubmitting, getFieldProps } = formik;
+  useEffect(() => {
+    if (userInfo) {
+      navigate('/dashboard/app', { replace: true });
+    }
+  }, [navigate, userInfo]);
   return (
     <FormikProvider value={formik}>
       <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
@@ -88,7 +101,20 @@ export default function RegisterForm() {
             helperText={touched.password && errors.password}
           />
 
-          <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={isSubmitting}>
+          {registerError ? (
+            <Alert severity="error">
+              <AlertTitle>Register Error</AlertTitle>
+              {registerError}
+            </Alert>
+          ) : null}
+
+          <LoadingButton
+            fullWidth
+            size="large"
+            type="submit"
+            variant="contained"
+            loading={registerLoading ? isSubmitting : null}
+          >
             Register
           </LoadingButton>
         </Stack>
