@@ -5,20 +5,15 @@ from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework.documentation import include_docs_urls
 from rest_framework.schemas import get_schema_view
+from drf_yasg import openapi
 from django.views.generic import TemplateView
-from accounts.api import (
-    UserViewSet,
-    AvatarViewSet,
-    AuthSetup,
-)
+
 admin.site.site_header = "Django BoilerPlate Admin"
 admin.site.site_title = "Django BoilerPlate Admin"
 admin.site.index_title = "Welcome to Django BoilerPlate Admin"
 
 
 router = routers.DefaultRouter()
-router.register(r"avatars", AvatarViewSet)
-router.register(r"users", UserViewSet)
 
 
 schema_view = get_schema_view(title='Rest API')
@@ -29,8 +24,14 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='index.html')),  # React Build Index
     path('admin/', admin.site.urls),
     path("api/", include(router.urls)),
-    path('docs/', include_docs_urls(title='Rest API')),
-    path('schema/', schema_view),
+    path('api/v1/docs/', include_docs_urls(title='Rest API')),
+    path('api/v1/schema/', get_schema_view(
+        title="BoilerPlate",
+        description="Add Description here",
+        version="1.0.0"
+    ), name='openapi-schema'),
+
+    path('api/v1/accounts/', include('accounts.urls')),
 
 ]
 

@@ -1,57 +1,24 @@
-from pathlib import Path
-
-from django.contrib.auth import get_user_model
 from rest_framework import serializers
-from rest_framework.validators import UniqueValidator
-
-from .models import Avatar
-
-User = get_user_model()
+from .models import Avatar, CustomUser
+from rest_framework_simplejwt.tokens import RefreshToken
 
 
-class AvatarSerializer(serializers.ModelSerializer):
-    name = serializers.SerializerMethodField()
-
-    class Meta:
-        model = Avatar
-        fields = ["id", "photo", "name"]
-
-    def get_name(self, obj):
-        return Path(obj.photo.name).stem
+class UserSerializer(serializers.Serializer):
+    id = serializers.UUIDField(read_only=True)
+    avatar = serializers.ImageField(read_only=True)
+    first_name = serializers.CharField(read_only=True)
+    last_name = serializers.CharField(read_only=True)
+    is_staff = serializers.BooleanField(read_only=True)
 
 
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ["id", "first_name", "last_name", "email"]
+class UserSerializerWithToken(UserSerializer):
+    access = serializers.SerializerMethodField(read_only=True)
+    refresh = serializers.SerializerMethodField(read_only=True)
 
+    def get_access(self, obj):
+        token = RefreshToken.for_user(obj)
+        return str(token.access_token)
 
-class UserSearchSerializer(serializers.ModelSerializer):
-    avatar = AvatarSerializer(read_only=True)
-
-    class Meta:
-        model = User
-        fields = ["id", "email", "avatar"]
-
-
-class UserDetailSerializer(serializers.ModelSerializer):
-    avatar = AvatarSerializer(read_only=True)
-    email = serializers.EmailField(
-        validators=[UniqueValidator(queryset=User.objects.all())], required=False
-    )
-
-    class Meta:
-        model = User
-        fields = [
-            "id",
-            "first_name",
-            "last_name",
-            "email",
-            "avatar",
-            "date_joined",
-        ]
-        read_only_fields = [
-            "id",
-            "avatar",
-            "date_joined",
-        ]
+    def get_refresh(self, obj):
+        token = RefreshToken.for_user(obj)
+        return str(token)
