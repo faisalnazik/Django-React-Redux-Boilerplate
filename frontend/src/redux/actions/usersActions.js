@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { LIST_REQUEST, LIST_SUCCESS, LIST_FAIL } from '../types/users';
+import { DOMAIN } from '../constants';
 
 export const users = () => async (dispatch, getState) => {
   try {
@@ -14,11 +15,11 @@ export const users = () => async (dispatch, getState) => {
     const config = {
       headers: {
         'Content-type': 'application/json',
-        Authorization: `Bearer ${userInfo.refresh}`,
+        Authorization: `Bearer ${userInfo.access}`,
       },
     };
 
-    const { data } = await axios.get(`/api/v1/accounts/`, config);
+    const { data } = await axios.get(`${DOMAIN}/api/v1/accounts/users/`, config);
 
     dispatch({
       type: LIST_SUCCESS,

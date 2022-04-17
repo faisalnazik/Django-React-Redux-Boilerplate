@@ -8,7 +8,7 @@ const reducer = combineReducers({
   userLogin: loginReducer,
   userRgister: registerReducer,
 
-  users: usersReducer,
+  listUser: usersReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;

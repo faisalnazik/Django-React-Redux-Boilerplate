@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import gettext as _
-from .models import Avatar, CustomUser
+from .models import CustomUser
 
 
 class CustomUserAdmin(UserAdmin):
@@ -12,8 +12,12 @@ class CustomUserAdmin(UserAdmin):
     fieldsets = (
         (None, {'fields': ('first_name',
                            'last_name',
-                           'avatar',
-                           'email',)}),
+                           'avatarUrl',
+                           'status',
+                           'email',
+                           'role',
+                           'company',
+                           )}),
         (_('Permissions'), {'fields': ('is_active', 'is_staff',
          'is_superuser', 'groups', 'user_permissions')}),
         (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
@@ -25,11 +29,11 @@ class CustomUserAdmin(UserAdmin):
         }),
     )
 
-    list_display = ('first_name', 'last_name', 'email',)
+    list_display = ('first_name', 'last_name', 'email',
+                    'isVerified', 'role', 'company',)
     search_fields = ('id', 'first_name', 'last_name', 'email')
     ordering = ('id',)
-    list_filter = ('is_staff',)
+    list_filter = ('is_staff', 'role', 'isVerified', 'company',)
 
 
-admin.site.register(Avatar)
 admin.site.register(CustomUser, CustomUserAdmin)

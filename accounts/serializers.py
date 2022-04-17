@@ -1,14 +1,19 @@
 from rest_framework import serializers
-from .models import Avatar, CustomUser
+from .models import CustomUser
 from rest_framework_simplejwt.tokens import RefreshToken
 
 
 class UserSerializer(serializers.Serializer):
     id = serializers.UUIDField(read_only=True)
-    avatar = serializers.ImageField(read_only=True)
-    first_name = serializers.CharField(read_only=True)
-    last_name = serializers.CharField(read_only=True)
-    is_staff = serializers.BooleanField(read_only=True)
+    avatarUrl = serializers.ImageField(read_only=True)
+    name = serializers.SerializerMethodField(read_only=True)
+    isVerified = serializers.BooleanField(read_only=True)
+    status = serializers.CharField(read_only=True)
+    role = serializers.CharField(read_only=True)
+    company = serializers.CharField(read_only=True)
+
+    def get_name(self, obj):
+        return str(obj.first_name + " " + obj.last_name)
 
 
 class UserSerializerWithToken(UserSerializer):

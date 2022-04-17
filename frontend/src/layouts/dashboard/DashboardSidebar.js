@@ -76,7 +76,7 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
               <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
                 {userInfo ? (
                   <>
-                    {userInfo.first_name} {userInfo.last_name}
+                    {userInfo.name} 
                   </>
                 ) : (
                   'John Doe'
@@ -113,7 +113,7 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
             target="_blank"
             variant="contained"
           >
-            Download Repository
+            Make a Clone
           </Button>
         </Stack>
       </Box>

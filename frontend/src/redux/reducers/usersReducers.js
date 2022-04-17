@@ -1,30 +1,31 @@
 /* eslint-disable default-param-last */
 import { LIST_REQUEST, LIST_SUCCESS, LIST_FAIL, LIST_RESET } from '../types/users';
 
-export const usersReducer = (state = { users: [] }, action) => {
+export const usersReducer = (state = { USERLIST: [] }, action) => {
   switch (action.type) {
     case LIST_REQUEST:
       return {
         loading: true,
-        users: [],
+        USERLIST: [],
       };
 
     case LIST_SUCCESS:
       return {
         loading: false,
         success: true,
-        users: action.payload,
+        USERLIST: action.payload,
       };
 
     case LIST_FAIL:
       return {
         loading: false,
         error: action.payload,
+        USERLIST: [],
       };
 
     case LIST_RESET:
       return {
-        users: [],
+        USERLIST: [],
       };
 
     default:

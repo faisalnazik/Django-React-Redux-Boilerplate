@@ -8,11 +8,20 @@ from django.utils.translation import gettext as _
 import uuid
 
 
-class Avatar(models.Model):
-    photo = models.ImageField(upload_to="avatars")
+# This is just an example no need to keep them
+ROLE_CHOICES = (
 
-    def __str__(self):
-        return os.path.basename(self.photo.name)
+    ('Backend Developer', 'Backend Developer'),
+    ('Full Stack Designer', 'Full Stack Designer'),
+    ('Front End Developer', 'Front End Developer'),
+    ('Full Stack Developer', 'Full Stack Developer'),
+)
+
+STATUS_CHOICES = (
+
+    ('active', 'ACTIVE'),
+    ('banned', 'BANNED'),
+)
 
 
 class CustomUserManager(BaseUserManager):
@@ -50,9 +59,14 @@ class CustomUser(AbstractUser):
     id = models.UUIDField(primary_key=True, unique=True,
                           default=uuid.uuid4, editable=False)
     email = models.EmailField(_('email address'), unique=True)
-    avatar = models.ForeignKey(
-        "Avatar", null=True, blank=True, on_delete=models.PROTECT
-    )
+    isVerified = models.BooleanField(default=False)
+    avatarUrl = models.ImageField(
+        upload_to='users', null=True, blank=True, default='/placeholder.png')
+    status = models.CharField(
+        max_length=100, choices=STATUS_CHOICES, default='active')
+    role = models.CharField(
+        max_length=100, choices=ROLE_CHOICES, default='Full Stack Developer')
+    company = models.CharField(max_length=100, default='NA')
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', "last_name"]
 

@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.contrib.auth.hashers import make_password
-from email_validator import validate_email, EmailNotValidError
 from rest_framework import permissions, status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
@@ -9,23 +8,14 @@ from rest_framework.views import APIView
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.viewsets import ReadOnlyModelViewSet
+from rest_framework.throttling import UserRateThrottle, AnonRateThrottle
 from .models import CustomUser
 from .serializers import UserSerializer, UserSerializerWithToken
 
 
-def email_validator(email):
-    """validates & return the entered email if correct
-    else returns an exception as string"""
-    try:
-        validated_email_data = validate_email(email)
-        email_add = validated_email_data['email']
-        return email_add
-    except EmailNotValidError as e:
-        return str(e)
-
-
 class RegisterView(APIView):
     permission_classes = [permissions.AllowAny]
+    throttle_classes = [AnonRateThrottle]
     authentication_classes = []
 
     def post(self, request):
@@ -34,7 +24,6 @@ class RegisterView(APIView):
         last_name = data.get('lastName')
         email = data.get('email')
         password = data.get('password')
-        # email_valid_check_result = email_validator(email)
         messages = {'errors': []}
         if first_name == None:
             messages['errors'].append('first_name can\'t be empty')
@@ -42,8 +31,6 @@ class RegisterView(APIView):
             messages['errors'].append('last_name can\'t be empty')
         if email == None:
             messages['errors'].append('Email can\'t be empty')
-        # if not email_valid_check_result == email:
-        #     messages['errors'].append(email_valid_check_result)
         if password == None:
             messages['errors'].append('Password can\'t be empty')
         if CustomUser.objects.filter(email=email).exists():
@@ -81,6 +68,7 @@ class MyTokenObtainPairView(TokenObtainPairView):
 
 
 class UserViewSet(ReadOnlyModelViewSet):
+    throttle_classes = [UserRateThrottle]
     serializer_class = UserSerializer
     queryset = CustomUser.objects.all()
     permission_classes = [IsAuthenticated]

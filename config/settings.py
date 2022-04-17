@@ -28,7 +28,6 @@ INSTALLED_APPS = [
     # To generate Admin Docs  Requirement -> # pip install docutils
     'django.contrib.admindocs',
 
-    'django.contrib.sites',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -47,8 +46,6 @@ INSTALLED_APPS = [
 
 ]
 
-# For django.contrib.sites
-SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -74,14 +71,20 @@ AUTH_USER_MODEL = "accounts.CustomUser"
 # Configure django-rest-framework
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework.authentication.TokenAuthentication",
-        "rest_framework.authentication.SessionAuthentication",
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle'
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '100/day',
+        'user': '1000/day'
+    }
 }
-
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True,
@@ -108,7 +111,7 @@ SIMPLE_JWT = {
     'JTI_CLAIM': 'jti',
 
     'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
-    'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
+    'SLIDING_TOKEN_LIFETIME': timedelta(minutes=60),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
 
@@ -118,6 +121,9 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
+            # Must run $ python manage.py collectstatic just before turning on the Server
+            # Or push them with collectstattic from the development env
+            os.path.join(BASE_DIR, 'frontend/build'),
             os.path.join(BASE_DIR, 'templates')
         ],
         'APP_DIRS': True,
@@ -203,6 +209,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+    BASE_DIR / 'frontend/build/static',
+
+]
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
@@ -215,7 +227,7 @@ CORS_ALLOWED_ORIGINS = [
     "https://example.com",
     "https://sub.example.com",
     "http://localhost:8080",
-    "http://localhost:3000",  # if you have seprate react app
+    "http://localhost:3000",  # React App will be on this port
     "http://127.0.0.1:9000"
 ]
 

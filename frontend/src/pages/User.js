@@ -4,7 +4,10 @@ import { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 // material
 import {
+  Box,
   Card,
+  Alert,
+  AlertTitle,
   Table,
   Stack,
   Avatar,
@@ -18,6 +21,9 @@ import {
   TableContainer,
   TablePagination,
 } from '@mui/material';
+import { useSelector } from 'react-redux';
+import LinearProgress from '@mui/material/LinearProgress';
+
 // components
 import Page from '../components/Page';
 import Label from '../components/Label';
@@ -25,8 +31,8 @@ import Scrollbar from '../components/Scrollbar';
 import Iconify from '../components/Iconify';
 import SearchNotFound from '../components/SearchNotFound';
 import { UserListHead, UserListToolbar, UserMoreMenu } from '../sections/@dashboard/user';
-// mock
-import USERLIST from '../_mock/user';
+
+import UsersListCall from '../redux/calls/UsersListCall';
 
 // ----------------------------------------------------------------------
 
@@ -71,6 +77,12 @@ function applySortFilter(array, comparator, query) {
 }
 
 export default function User() {
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const listUser = useSelector((state) => state.listUser);
+  const { loading, error, USERLIST } = listUser;
+
   const [page, setPage] = useState(0);
 
   const [order, setOrder] = useState('asc');
@@ -135,6 +147,8 @@ export default function User() {
   return (
     <Page title="User">
       <Container>
+        {userInfo ? <UsersListCall /> : null}
+
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
             User
@@ -146,6 +160,17 @@ export default function User() {
 
         <Card>
           <UserListToolbar numSelected={selected.length} filterName={filterName} onFilterName={handleFilterByName} />
+          {error ? (
+            <Alert severity="error">
+              <AlertTitle>List Loading Error</AlertTitle>
+              {error}
+            </Alert>
+          ) : null}
+          {loading ? (
+            <Box sx={{ width: '100%' }}>
+              <LinearProgress />
+            </Box>
+          ) : null}
 
           <Scrollbar>
             <TableContainer sx={{ minWidth: 800 }}>

@@ -1,4 +1,4 @@
-import { Grid, Container, Typography, Card, CardContent, Box, Button, CardActions } from '@mui/material';
+import { Grid, Container, Typography, Card, CardContent, Box, Button, CardActions, Link } from '@mui/material';
 // components
 import Page from '../components/Page';
 
@@ -9,7 +9,7 @@ export default function DashboardApp() {
     <Page title="Dashboard">
       <Container maxWidth="xl">
         <Typography variant="h4" sx={{ mb: 5 }}>
-          Hi, Welcome back
+          Hi, Welcome 👋
         </Typography>
 
         <Grid container spacing={3}>
@@ -17,7 +17,18 @@ export default function DashboardApp() {
             <Card>
               <Box sx={{ p: 3, pb: 1 }} dir="ltr">
                 <Typography variant="p" sx={{ mb: 5 }}>
-                  Start you project from here ...
+                  Kick start your project 🚀
+                </Typography>
+                All the best for your new project
+                <Typography>
+                  Please make sure to{' '}
+                  <Link
+                    href="https://github.com/faisalnazik/Django-REST-Framework-React-BoilerPlate/blob/master/README.md"
+                    target="_blank"
+                  >
+                    README
+                  </Link>
+                  to understand where to go from here to use this BoilerPlate
                 </Typography>
                 <Box m={2} pt={3}>
                   <Button
@@ -25,7 +36,7 @@ export default function DashboardApp() {
                     target="_blank"
                     variant="outlined"
                   >
-                    Github
+                    Get more information
                   </Button>
                 </Box>
               </Box>
