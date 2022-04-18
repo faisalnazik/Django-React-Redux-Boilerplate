@@ -28,7 +28,7 @@
 - Throttle setup
 - Extra password hashers like `Argon2PasswordHasher` Recommend by official django docs.
 
-## Frontend :electron:
+## Frontend ⭐
 
 - Latest version of React. and React Router Dom ✔
 - Material UI Template for clean Design. ✔
