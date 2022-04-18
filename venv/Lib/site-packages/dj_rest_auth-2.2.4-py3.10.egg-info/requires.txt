@@ -1,0 +1,5 @@
+Django>=2.0
+djangorestframework>=3.7.0
+
+[with_social]
+django-allauth<0.51.0,>=0.40.0
