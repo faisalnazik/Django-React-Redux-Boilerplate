@@ -21,7 +21,7 @@
 
 - Django REST framework for a powerful API with Current Django LTS version✔
 - Django ORM for interacting with the database✔
-- PostgreSQL ✔ (NOTE: Sqlite is configured as default , turn IS_POSTGRESQL = True in settings.py if you want to use PostgreSQL)
+- PostgreSQL Config ✔ 
 - Authentication With JWT (SIGN UP and Sign IN) more to come soon...✔
 - JWT Token Black Listing✔
 - ReadOnly Serializers for better performance ✔
@@ -60,7 +60,7 @@
     - Install dependencies in frontend app using following commands in separate terminal
     - First make sure you have installed Node.js, I used v16.13.1. while upgrading this setup.
 
-    For More info https://nodejs.org/en/  https://nodejs.org/en/
+    For More info https://nodejs.org/en/  
 
     - Then run following commands in dir where the package.json file is located
 
