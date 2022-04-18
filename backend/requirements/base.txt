@@ -12,7 +12,7 @@ cryptography==36.0.2
 defusedxml==0.7.1
 dj-database-url==0.5.0
 dj-rest-auth==2.2.4
-Django==3.2
+Django==3.2.12
 django-cors-headers==3.11.0
 django-environ==0.8.1
 django-heroku==0.3.1
