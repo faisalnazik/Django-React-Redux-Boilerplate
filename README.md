@@ -43,16 +43,19 @@
 
 ## How to Run locally 🚀
 
-    - Install Dependencies after creating and activating virtual environement
+    - Install requirements after creating and activating virtual environement
 
-    $ pip install -r requirements/local.txt
+        $ pip install -r requirements/local.txt
 
     - Create .env file in config and put variables for Secret Key and Database (PostgreSQL) are optional as by default
     IS_POSTGRESQL = False and won't reuired the credentials. If your turn this into True then set the variables for that
     as created in sample.env file
 
-    $ python manage.py makemigrations
+        $ python manage.py makemigrations
         $ python manage.py migrate
+
+    To run UnitTests:
+        $ python manage.py test
 
     API Documentation will be available at`http://localhost:8000/api/v1/docs/`
 
@@ -63,9 +66,9 @@
 
     For More info https://nodejs.org/en/
 
-    - Then run following commands in dir where the package.json file is located
+    - Then run following commands in frontend dir
 
-    $ yarn install
+        $ yarn install
         $ yarn start
 
     -  React app available at`http://localhost:3000/`
