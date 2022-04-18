@@ -28,7 +28,7 @@
 - Throttle setup
 - Extra password hashers like `Argon2PasswordHasher` Recommend by official django docs.
 
-## Frontend⭐
+## Frontend :electron:
 
 - Latest version of React. and React Router Dom ✔
 - Material UI Template for clean Design. ✔
@@ -70,6 +70,9 @@
     -  React app available at`http://localhost:3000/`
 
 👉 [View Live](https://drf-react-boilerplate.herokuapp.com/) 🚀
+
+👉 [Github Pages](https://faisalnazik.github.io/Django-REST-Framework-React-BoilerPlate/) 
+
 
 ## ⭐️ Support
 
