@@ -7,6 +7,8 @@
 [![Code of Conduct](https://img.shields.io/badge/code%20of-conduct-ff69b4.svg?style=flat-square)](https://github.com/faisalnazik/Django-REST-Framework-React-BoilerPlate/blob/master/CODE_OF_CONDUCT.md)
 [![Maintainability](https://api.codeclimate.com/v1/badges/1dc1d840640dad52e38f/maintainability)](https://codeclimate.com/github/faisalnazik/Django-REST-Framework-React-BoilerPlate/maintainability)
 
+![](image/README/1650208713974.png)
+
 ## Frontend ⭐
 
 - Latest version of React. and React Router Dom ✔
@@ -19,9 +21,9 @@
 - Login , Register and one example of Users list with Search, Filter , Pagination and more ✔
 - Server Errors Handling✔
 
-![](image/README/1650208713974.png)
-
 ## Backend🛠
+
+![](image/README/1650278750325.png)
 
 - Django REST framework for a powerful API with Current Django LTS version✔
 - Django ORM for interacting with the database✔
