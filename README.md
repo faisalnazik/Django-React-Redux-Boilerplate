@@ -2,34 +2,10 @@
 
 👉 [View Live](https://drf-react-boilerplate.herokuapp.com/)
 
-![](image/README/1650208713974.png)
-
-- Integration of Django and React, Auth and Registraion
-
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![Code of Conduct](https://img.shields.io/badge/code%20of-conduct-ff69b4.svg?style=flat-square)](https://github.com/faisalnazik/Django-REST-Framework-React-BoilerPlate/blob/master/CODE_OF_CONDUCT.md)
 [![Maintainability](https://api.codeclimate.com/v1/badges/1dc1d840640dad52e38f/maintainability)](https://codeclimate.com/github/faisalnazik/Django-REST-Framework-React-BoilerPlate/maintainability)
-
-## Motivation 🎯
-
-- Minimal Setup of Starter MUI template configured with Django using DRF and Redux⭐
-- Robust Styles from Material UI⭐
-- Basic and Simple Code examples to understand integration⭐
-- More feactuers will also be added pretty soon⭐
-
-## Built using a Modern stack 💎
-
-## Backend🛠
-
-- Django REST framework for a powerful API with Current Django LTS version✔
-- Django ORM for interacting with the database✔
-- PostgreSQL Config ✔ 
-- Authentication With JWT (SIGN UP and Sign IN) more to come soon...✔
-- JWT Token Black Listing✔
-- ReadOnly Serializers for better performance ✔
-- Throttle setup
-- Extra password hashers like `Argon2PasswordHasher` Recommend by official django docs.
 
 ## Frontend ⭐
 
@@ -42,6 +18,26 @@
 - Forms Validation with Formik ✔
 - Login , Register and one example of Users list with Search, Filter , Pagination and more ✔
 - Server Errors Handling✔
+
+![](image/README/1650208713974.png)
+
+## Backend🛠
+
+- Django REST framework for a powerful API with Current Django LTS version✔
+- Django ORM for interacting with the database✔
+- PostgreSQL Config ✔
+- Authentication With JWT (SIGN UP and Sign IN) more to come soon...✔
+- JWT Token Black Listing✔
+- ReadOnly Serializers for better performance ✔
+- Throttle setup
+- Extra password hashers like `Argon2PasswordHasher` Recommend by official django docs.
+
+## Motivation 🎯
+
+- Minimal Setup of Starter MUI template configured with Django using DRF and Redux⭐
+- Robust Styles from Material UI⭐
+- Basic and Simple Code examples to understand integration⭐
+- More feactuers will also be added pretty soon⭐
 
 ## How to Run locally 🚀
 
@@ -63,7 +59,7 @@
     - Install dependencies in frontend app using following commands in separate terminal
     - First make sure you have installed Node.js, I used v16.13.1. while upgrading this setup.
 
-    For More info https://nodejs.org/en/  
+    For More info https://nodejs.org/en/
 
     - Then run following commands in dir where the package.json file is located
 
@@ -74,8 +70,7 @@
 
 👉 [View Live](https://drf-react-boilerplate.herokuapp.com/) 🚀
 
-👉 [Github Pages](https://faisalnazik.github.io/Django-REST-Framework-React-BoilerPlate/) 
-
+👉 [Github Pages](https://faisalnazik.github.io/Django-REST-Framework-React-BoilerPlate/)
 
 ## ⭐️ Support
 
