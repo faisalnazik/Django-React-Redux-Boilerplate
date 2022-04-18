@@ -15,7 +15,7 @@
 
 - Minimal Setup of Starter MUI template configured with Django using DRF and Redux⭐
 - Robust Styles from Material UI⭐
-- Basic and Simple Code examples to help Beginners.⭐
+- Basic and Simple Code examples to understand integration⭐
 - More feactuers will also be added pretty soon⭐
 
 ## Built using a Modern stack 💎
