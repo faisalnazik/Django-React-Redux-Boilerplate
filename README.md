@@ -18,7 +18,7 @@
 - React with functional components and hooks ✔
 - Redux with proper store configuration in the Minimal Template ✔
 - Forms Validation with Formik ✔
-- Login , Register and one example of Users list with Search, Filter , Pagination and more ✔
+- Login , Register and one example of Users list using Material React Table with Search, Filter , Pagination and more ✔
 - Server Errors Handling✔
 
 ## Backend🛠
