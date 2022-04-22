@@ -29,8 +29,6 @@ jobs:
     # CircleCI will report the results back to your VCS provider.
     steps:
       - checkout
-      - restore_cache:
-          key: deps1-{{ .Branch }}-{{ checksum "backend/requirements/local.txt" }}
       - run:
           command: |
             python3 -m venv venv
@@ -42,10 +40,6 @@ jobs:
           name: Run unit tests
           # This assumes pytest is installed via the install-package step above
           command: ./backend/config/manage.py test
-      - save_cache:
-          key: deps1-{{ .Branch }}-{{ checksum "backend/requirements/local.txt" }}
-          paths:
-            - "venv"
       - run:
           name: Running tests
           command: |
