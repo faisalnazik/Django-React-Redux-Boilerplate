@@ -29,6 +29,12 @@ jobs:
     # CircleCI will report the results back to your VCS provider.
     steps:
       - checkout
+      - restore_cache:
+          key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
+      - run:
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
       - python/install-packages:
           pkg-manager: pip
           pip-dependency-file: backend/requirements/local.txt  # if you have a different name for your requirements file, maybe one that combines your runtime and test requirements.
@@ -36,6 +42,19 @@ jobs:
           name: Run unit tests
           # This assumes pytest is installed via the install-package step above
           command: ./backend/config/manage.py test
+      - save_cache:
+          key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
+          paths:
+            - "venv"
+      - run:
+          name: Running tests
+          command: |
+            . venv/bin/activate
+            . backend/config
+            python3 manage.py test
+      - store_artifacts:
+          path: test-reports/
+          destination: python_app
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
