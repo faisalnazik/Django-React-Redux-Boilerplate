@@ -40,9 +40,6 @@ jobs:
           name: Running tests
           command: |
             . venv/bin/activate
-            cd backend
-            python3 manage.py migrate
-            python manage.py test
       - store_artifacts:
           path: test-reports/
           destination: python_app
