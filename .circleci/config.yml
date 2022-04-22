@@ -40,7 +40,7 @@ jobs:
           name: Running tests
           command: |
             . venv/bin/activate
-            . cd backend/config
+            . cd backend/
             python3 manage.py test
       - store_artifacts:
           path: test-reports/
