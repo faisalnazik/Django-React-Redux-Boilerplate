@@ -34,7 +34,7 @@ Pillow==9.0.1
 psycopg2==2.9.3
 pycodestyle==2.8.0
 pycparser==2.21
-PyJWT==2.3.0
+PyJWT==2.4.0
 PyYAML==6.0
 pyparsing==3.0.8
 pyrsistent==0.18.1
