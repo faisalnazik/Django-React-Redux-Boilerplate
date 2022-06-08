@@ -31,8 +31,8 @@
 - Authentication With JWT (SIGN UP and Sign IN) more to come soon...✔
 - JWT Token Black Listing✔
 - ReadOnly Serializers for better performance ✔
-- Throttle setup
-- Extra password hashers like `Argon2PasswordHasher` Recommend by official django docs.
+- Throttle setup ✔
+- Extra password hashers like `Argon2PasswordHasher` Recommend by official django docs. ✔
 
 ## Motivation 🎯
 
