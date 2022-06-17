@@ -55,7 +55,7 @@ class RegisterView(APIView):
             message = "Confirm your email {}/api/v1/accounts/confirmation{}/{}/".format(current_site, tokenSerializer.data['refresh'], user.id)
             to_email = email
             send_mail(
-                    mail_subject, message, "iy8ld2@gmail.com", [to_email]
+                    mail_subject, message, "youremail@email.com", [to_email]
             )
             serializer = UserSerializerWithToken(user, many=False)
         except Exception as e:
