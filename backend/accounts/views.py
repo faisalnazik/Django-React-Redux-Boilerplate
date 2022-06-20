@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.hashers import make_password
+from django.contrib.sites.shortcuts import get_current_site
+from django.core.mail import send_mail
 from rest_framework import permissions, status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
@@ -45,13 +47,46 @@ class RegisterView(APIView):
                 email=email,
                 password=make_password(password)
             )
+            current_site = get_current_site(request)
+            mail_subject = 'Activation link has been sent to your email id'
+            tokenSerializer = UserSerializerWithToken(user, many=False)
+
+            # Next version will add a HTML template
+            message = "Confirm your email {}/api/v1/accounts/confirmation{}/{}/".format(current_site, tokenSerializer.data['refresh'], user.id)
+            to_email = email
+            send_mail(
+                    mail_subject, message, "youremail@email.com", [to_email]
+            )
             serializer = UserSerializerWithToken(user, many=False)
         except Exception as e:
             print(e)
             return Response({'detail': f'{e}'}, status=status.HTTP_400_BAD_REQUEST)
         return Response(serializer.data)
 
+from django.http import HttpResponse
+import datetime
+import jwt
+from config import settings
 
+@api_view(['GET'])
+def confirmation(request, pk, uid):
+    user = CustomUser.objects.get(id=uid)
+    token = jwt.decode(pk, settings.SECRET_KEY, algorithms=["HS256"])
+
+    if user.isVerified == False and datetime.datetime.fromtimestamp(token['exp']) > datetime.datetime.now():
+        user.isVerified = True
+        user.save()
+        return HttpResponse('Your account has been activated')
+
+    elif (datetime.datetime.fromtimestamp(token['exp']) < datetime.datetime.now()):
+
+        # For resending confirmation email use send_mail with the following encryption
+        # print(jwt.encode({'user_id': user.user.id, 'exp': datetime.datetime.now() + datetime.timedelta(days=1)}, settings.SECRET_KEY, algorithm='HS256'))
+        
+        return HttpResponse('Your activation link has been expired')
+    else:
+        return HttpResponse('Your account has already been activated')
+    
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
         data = super().validate(attrs)
