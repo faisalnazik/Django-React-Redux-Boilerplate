@@ -25,7 +25,7 @@
 
 ![](image/README/1650278750325.png)
 
-- Django REST framework for a powerful API with Current Django LTS version✔
+- Django REST framework for a powerful API ✔
 - Django ORM for interacting with the database✔
 - PostgreSQL Config ✔
 - Authentication With JWT (SIGN UP and Sign IN) more to come soon...✔
