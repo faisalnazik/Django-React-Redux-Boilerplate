@@ -64,7 +64,7 @@ dj-database-url==0.5.0
     #   django-heroku
 dj-rest-auth==2.2.4
     # via -r base.txt
-django==4.0.5
+django==4.0.6
     # via
     #   -r base.txt
     #   dj-rest-auth
