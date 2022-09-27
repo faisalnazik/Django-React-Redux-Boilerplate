@@ -142,7 +142,7 @@ platformdirs==2.5.2
     # via
     #   -r base.txt
     #   black
-psycopg2==2.9.3
+psycopg2-binary
     # via
     #   -r base.txt
     #   django-heroku
