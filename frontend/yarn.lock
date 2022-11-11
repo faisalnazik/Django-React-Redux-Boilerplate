@@ -6620,7 +6620,7 @@ react-router@6.3.0:
 
 react-scripts@^5.0.0:
   version "5.0.0"
-  resolved "https://registry.npmjs.org/react-scripts/-/react-scripts-5.0.0.tgz"
+  resolved "https://registry.yarnpkg.com/react-scripts/-/react-scripts-5.0.0.tgz#6547a6d7f8b64364ef95273767466cc577cb4b60"
   dependencies:
     "@babel/core" "^7.16.0"
     "@pmmmwh/react-refresh-webpack-plugin" "^0.5.3"
