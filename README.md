@@ -1,6 +1,5 @@
 <h1 align="center">Django REST API with React BoilerPlate</h1>
 
-👉 [View Live](https://drf-react-boilerplate.herokuapp.com/)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
@@ -73,7 +72,6 @@
 
     -  React app available at`http://localhost:3000/`
 
-👉 [View Live](https://drf-react-boilerplate.herokuapp.com/) 🚀
 
 👉 [Github Pages](https://faisalnazik.github.io/Django-REST-Framework-React-BoilerPlate/)
 
