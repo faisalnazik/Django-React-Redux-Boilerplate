@@ -1,6 +1,10 @@
 {
-  "short_name": "BoilerPlate",
-  "name": "DRF - React BoilerPlate",
+  "name": "name",
+  "short_name": "shortname",
+  "display": "standalone",
+  "start_url": "/dashboard/app",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
   "icons": [
     {
       "src": "favicon/android-chrome-192x192.png",
@@ -12,9 +16,5 @@
       "sizes": "512x512",
       "type": "image/png"
     }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  ]
 }

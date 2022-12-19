@@ -1,47 +1,18 @@
 import PropTypes from 'prop-types';
-// material
+// @mui
 import { Box, Checkbox } from '@mui/material';
 //
 import Iconify from '../Iconify';
 
 // ----------------------------------------------------------------------
 
-IconColor.propTypes = {
-  sx: PropTypes.object,
-};
-
-function IconColor({ sx, ...other }) {
-  return (
-    <Box
-      sx={{
-        width: 20,
-        height: 20,
-        display: 'flex',
-        borderRadius: '50%',
-        position: 'relative',
-        alignItems: 'center',
-        justifyContent: 'center',
-        bgcolor: 'currentColor',
-        transition: (theme) =>
-          theme.transitions.create('all', {
-            duration: theme.transitions.duration.shortest,
-          }),
-        ...sx,
-      }}
-      {...other}
-    >
-      <Iconify icon="eva:checkmark-fill" />
-    </Box>
-  );
-}
-
 ColorManyPicker.propTypes = {
-  colors: PropTypes.array.isRequired,
-  onChecked: PropTypes.func,
+  colors: PropTypes.arrayOf(PropTypes.string),
+  onChangeColor: PropTypes.func,
   sx: PropTypes.object,
 };
 
-export default function ColorManyPicker({ colors, onChecked, sx, ...other }) {
+export default function ColorManyPicker({ colors, onChangeColor, sx, ...other }) {
   return (
     <Box sx={sx}>
       {colors.map((color) => {
@@ -53,7 +24,7 @@ export default function ColorManyPicker({ colors, onChecked, sx, ...other }) {
             size="small"
             value={color}
             color="default"
-            checked={onChecked(color)}
+            onChange={() => onChangeColor(color)}
             icon={
               <IconColor
                 sx={{
@@ -93,6 +64,37 @@ export default function ColorManyPicker({ colors, onChecked, sx, ...other }) {
           />
         );
       })}
+    </Box>
+  );
+}
+
+// ----------------------------------------------------------------------
+
+IconColor.propTypes = {
+  sx: PropTypes.object,
+};
+
+function IconColor({ sx, ...other }) {
+  return (
+    <Box
+      sx={{
+        width: 20,
+        height: 20,
+        display: 'flex',
+        borderRadius: '50%',
+        position: 'relative',
+        alignItems: 'center',
+        justifyContent: 'center',
+        bgcolor: 'currentColor',
+        transition: (theme) =>
+          theme.transitions.create('all', {
+            duration: theme.transitions.duration.shortest,
+          }),
+        ...sx,
+      }}
+      {...other}
+    >
+      <Iconify icon={'eva:checkmark-fill'} />
     </Box>
   );
 }

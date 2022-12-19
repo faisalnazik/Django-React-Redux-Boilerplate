@@ -1,43 +1,60 @@
+"""config URL Configuration
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/4.1/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+"""
+
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework import routers
 from django.conf import settings
 from django.conf.urls.static import static
-from rest_framework.documentation import include_docs_urls
 from rest_framework.schemas import get_schema_view
-from drf_yasg import openapi
-from django.views.generic import TemplateView
+from drf_spectacular.views import (
+    SpectacularAPIView,
+    SpectacularRedocView,
+    SpectacularSwaggerView,
+)
 
-admin.site.site_header = "Django BoilerPlate Admin"
-admin.site.site_title = "Django BoilerPlate Admin"
-admin.site.index_title = "Welcome to Django BoilerPlate Admin"
+admin.site.site_header = "Project Header"
+admin.site.site_title = "Project Title"
+admin.site.index_title = "Welcome Message"
 
 
-router = routers.DefaultRouter()
+schema_url_patterns = []
 
-
-schema_view = get_schema_view(title='Rest API')
+schema_view = get_schema_view(
+    title="API Title",
+    url="https://www.example.com/",
+    patterns=schema_url_patterns,
+)
 
 urlpatterns = [
-    # Authenticated Users only.
-    path('admin/docs/', include('django.contrib.admindocs.urls')),
-    path('admin/', admin.site.urls),
-
-
-    path('', TemplateView.as_view(
-        template_name='index.html',
-        extra_context={'schema_url': 'openapi-schema'}
-    ), name='swagger-ui'),
-    path("api/", include(router.urls)),
-    path('api/v1/docs/', include_docs_urls(title='Rest API')),
-    path('api/v1/schema/', get_schema_view(
-        title="Django REST API",
-        description="Django REST API Intended to Integrate with React Frontend",
-        version="1.0.0"
-    ), name='openapi-schema'),
-
-    path('api/v1/accounts/', include('accounts.urls')),
-
+    path("admin/", admin.site.urls),
+    path(
+        "", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"
+    ),  # Landing Page for API
+    path(
+        "api/v1/schema/redoc/",
+        SpectacularRedocView.as_view(url_name="schema"),
+        name="redoc",
+    ),
+    # YOUR PATTERNS
+    path("api/v1/schema/", SpectacularAPIView.as_view(), name="schema"),  # schema
+    path(
+        "api/v1/schema/swagger-ui/",
+        SpectacularSwaggerView.as_view(url_name="schema"),
+        name="swagger-ui",
+    ),
+    path("api/v1/accounts/", include("accounts.urls")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,30 +1,41 @@
 from rest_framework import serializers
-from .models import CustomUser
+from rest_framework.validators import UniqueValidator
+from django.core.validators import EmailValidator
 from rest_framework_simplejwt.tokens import RefreshToken
+from .models import User
+
+logger = __import__("logging").getLogger(__name__)
 
 
-class UserSerializer(serializers.Serializer):
-    id = serializers.UUIDField(read_only=True)
-    avatarUrl = serializers.ImageField(read_only=True)
-    name = serializers.SerializerMethodField(read_only=True)
-    isVerified = serializers.BooleanField(read_only=True)
-    status = serializers.CharField(read_only=True)
-    role = serializers.CharField(read_only=True)
-    company = serializers.CharField(read_only=True)
+class RegisterUserSerializer(serializers.ModelSerializer):
+    token = serializers.SerializerMethodField()
+    email = serializers.EmailField(
+        validators=[EmailValidator(), UniqueValidator(queryset=User.objects.all())]
+    )
 
-    def get_name(self, obj):
-        return str(obj.first_name + " " + obj.last_name)
+    class Meta:
+        model = User
+        fields = ["name", "email", "password", "token"]
+        extra_kwargs = {
+            "password": {"write_only": True, "min_length": 8},
+        }
+
+    def get_token(self, user):
+        token = RefreshToken.for_user(user)
+        data = {"refresh": str(token), "access": str(token.access_token)}
+        return data
 
 
-class UserSerializerWithToken(UserSerializer):
-    email = serializers.EmailField(read_only=True)
-    access = serializers.SerializerMethodField(read_only=True)
-    refresh = serializers.SerializerMethodField(read_only=True)
+class UserProfileSeralizer(serializers.ModelSerializer):
+    """Use this serializer to get the user profile"""
 
-    def get_access(self, obj):
-        token = RefreshToken.for_user(obj)
-        return str(token.access_token)
+    class Meta:
+        model = User
+        fields = ["id", "name", "email", "avatar"]
 
-    def get_refresh(self, obj):
-        token = RefreshToken.for_user(obj)
-        return str(token)
+    def update(self, instance, validated_data):
+        instance.name = validated_data.get("name", instance.name)
+        instance.email = validated_data.get("email", instance.email)
+        instance.avatar = validated_data.get("avatar", instance.avatar)
+        instance.save()
+        return instance
