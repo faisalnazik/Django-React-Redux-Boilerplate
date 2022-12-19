@@ -23,15 +23,15 @@
 
 - Django REST framework for a powerful API ✔
 - Django ORM for interacting with the database✔
-- Authentication With JWT (SIGN UP and Sign IN) more to come soon...✔
+- Authentication With JWT (Register, Sign In) ✔
 - Throttle setup ✔
+- Testing with Pytest ✔
 - Extra password hashers like `Argon2PasswordHasher` Recommend by official django docs. ✔
 
 ## Motivation 🎯
 
 - A quickstart django react boilerplate with updated dependecies to start with react project.
-- Robust Styles from Material UI⭐
-- Basic and Simple Code examples to understand integration⭐
+- Material UI usage⭐
 
 ## How to Run locally 🚀
 
@@ -41,10 +41,10 @@
 
     $ pip install -r requirements/local.txt
 
-    - Currently SQLite is configured, you can change it with any other as well. Then run
+- Currently SQLite is configured, you can change it with any other as well. Then run
 
     $ python manage.py makemigrations
-        $ python manage.py migrate
+        $ python3 manage.py migrate
 
     To run tests:
         $ pytest
