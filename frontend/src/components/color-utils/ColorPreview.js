@@ -1,15 +1,15 @@
 import PropTypes from 'prop-types';
-// material
+// @mui
 import { alpha, styled } from '@mui/material/styles';
 import { Box, Typography } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
-const RootStyle = styled(Box)({
+const RootStyle = styled(Box)(() => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'flex-end',
-});
+}));
 
 const IconStyle = styled('div')(({ theme }) => ({
   marginLeft: -4,
@@ -23,16 +23,17 @@ const IconStyle = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 ColorPreview.propTypes = {
-  colors: PropTypes.array.isRequired,
+  colors: PropTypes.arrayOf(PropTypes.string),
   limit: PropTypes.number,
+  sx: PropTypes.object,
 };
 
-export default function ColorPreview({ colors, limit = 3, ...other }) {
+export default function ColorPreview({ colors, limit = 3, sx }) {
   const showColor = colors.slice(0, limit);
   const moreColor = colors.length - limit;
 
   return (
-    <RootStyle component="span" {...other}>
+    <RootStyle component="span" sx={sx}>
       {showColor.map((color, index) => (
         <IconStyle key={color + index} sx={{ bgcolor: color }} />
       ))}

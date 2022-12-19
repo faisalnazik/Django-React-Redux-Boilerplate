@@ -1,23 +1,25 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux';
-import thunk from 'redux-thunk';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import { loginReducer, registerReducer } from './reducers/authReducers';
-import { usersReducer } from './reducers/usersReducers';
+import { configureStore } from '@reduxjs/toolkit';
+import { useDispatch as useAppDispatch, useSelector as useAppSelector } from 'react-redux';
+import { persistStore, persistReducer } from 'redux-persist';
+import { rootPersistConfig, rootReducer } from './rootReducer';
 
-const reducer = combineReducers({
-  userLogin: loginReducer,
-  userRgister: registerReducer,
+// ----------------------------------------------------------------------
 
-  listUser: usersReducer,
+const store = configureStore({
+  reducer: persistReducer(rootPersistConfig, rootReducer),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+      immutableCheck: false,
+    }),
 });
 
-const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;
+const persistor = persistStore(store);
 
-const initialState = {
-  userLogin: { userInfo: userInfoFromStorage },
-};
-const middleware = [thunk];
+const { dispatch } = store;
 
-const store = createStore(reducer, initialState, composeWithDevTools({ mageAge: 200 })(applyMiddleware(...middleware)));
+const useSelector = useAppSelector;
 
-export default store;
+const useDispatch = () => useAppDispatch();
+
+export { store, persistor, dispatch, useSelector, useDispatch };
