@@ -1,4 +1,4 @@
-<h1 align="center">DRF React & Redux Starter</h1>
+<h1 align="left">DRF React & Redux Boilerplate</h1>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
