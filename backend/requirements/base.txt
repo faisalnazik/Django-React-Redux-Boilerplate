@@ -18,7 +18,7 @@ djangorestframework-simplejwt==5.2.2
 drf-spectacular==0.25.1
 drf-yasg==1.21.4
 exceptiongroup==1.0.4
-Flask==2.2.2
+Flask==2.2.5
 Flask-Cors==3.0.10
 flask-restplus==0.13.0
 idna==3.4
