@@ -53,5 +53,5 @@ tomli==2.0.1
 tzdata==2022.7
 uritemplate==4.1.1
 urllib3==1.26.18
-Werkzeug==2.2.3
+Werkzeug==3.0.1
 whitenoise==6.2.0
