@@ -62,7 +62,7 @@
     "apexcharts": "^3.35.3",
     "assert": "^2.0.0",
     "autosuggest-highlight": "^3.3.0",
-    "axios": "^0.27.2",
+    "axios": "^1.6.0",
     "browserify-zlib": "^0.2.0",
     "buffer": "^6.0.3",
     "change-case": "^4.1.2",
