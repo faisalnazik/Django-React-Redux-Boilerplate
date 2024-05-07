@@ -21,7 +21,7 @@ exceptiongroup==1.0.4
 Flask==2.2.5
 Flask-Cors==3.0.10
 flask-restplus==0.13.0
-idna==3.4
+idna==3.7
 inflection==0.5.1
 iniconfig==1.1.1
 itsdangerous==2.1.2
